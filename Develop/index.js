@@ -1,9 +1,46 @@
+const Manager = require('./lib/Manager')
+const Engineer = require('./lib/Engineer')
+const Intern = require('./lib/Intern')
 const inquirer = require("inquirer");
 const fs = require("fs");
+const path = require('path');
+
+// const generateHTML = require('') // this this to pass in an a premade HTML/Styled page
+
+// const OUTPUT_DIR = path.resolve(__dirname, "output");
+// const outputPath = path.join(OUTPUT_DIR, "team.html");
+
+// const render = require("./lib/htmlRenderer");
 
 const team = []; // array for team
 
-// select tyoe of employee
+// select tyoe of employee wanted
+const employeeType = () => {
+  inquirer
+    .prompt([
+      {
+        name: "employee",
+        message: "What type of employee do you want to add?",
+        type: "list",
+        choices: [
+          { name: "Manager", value: 0 },
+          { name: "Engineer", value: 1 },
+          { name: "Intern", value: 2 },
+        ],
+      },
+    ])
+    .then((answer) => {
+      if (answer.employee === 0) {
+        createManager();
+      } else if (answer.employee === 1) {
+        createEngineer();
+      } else if (answer.employee === 2) {
+        createIntern();
+      }
+    })
+    .catch((err) => console.error(err));
+};
+employeeType(); // calls the employeType function
 
 // create manager
 const createManager = () => {
@@ -11,35 +48,35 @@ const createManager = () => {
     .prompt([
       {
         type: "input",
-        name: "nameManger",
+        name: "name",
         message: "What is your Team Manager's name?",
       },
       {
         type: "input",
-        name: "idManager",
+        name: "id",
         message: "What is the Team Manager's id?",
       },
       {
         type: "input",
-        name: "emailManager",
+        name: "email",
         message: "What is the email address for the Team Manager?",
       },
       {
         type: "input",
-        name: "officeNumberManager",
+        name: "officeNumber",
         message: "What is Team Manager's office number?",
       },
     ])
     .then((answer) => {
       let manager = new Manager(
-        answer.nameManager,
-        answer.idManager,
-        answer.emailManager,
-        answer.officeNumberManager
+        answer.name,
+        answer.id,
+        answer.email,
+        answer.officeNumber
       );
       team.push(manager);
 
-      // addNewEmployee();
+      addNewEmployee();
     });
 };
 
@@ -49,35 +86,35 @@ const createEngineer = () => {
     .prompt([
       {
         type: "input",
-        name: "nameEngineer",
+        name: "name",
         message: "What is your Engineer's name?",
       },
       {
         type: "input",
-        name: "idEngineer",
+        name: "id",
         message: "What is the Engineer's id?",
       },
       {
         type: "input",
-        name: "emailEngineer",
+        name: "email",
         message: "What is the email address for the Engineer?",
       },
       {
         type: "input",
-        name: "githubEngineer",
+        name: "github",
         message: "What is the Engineer's Github?",
       },
     ])
     .then((answer) => {
       let engineer = new Engineer(
-        answer.nameEngineer,
-        answer.idEngineer,
-        answer.emailEngineer,
-        answer.githubEngineer
+        answer.name,
+        answer.id,
+        answer.email,
+        answer.github
       );
       team.push(engineer);
 
-      // addNewEmployee();
+      addNewEmployee();
     });
 };
 
@@ -87,39 +124,61 @@ const createIntern = () => {
     .prompt([
       {
         type: "input",
-        name: "nameIntern",
+        name: "name",
         message: "What is your Intern's name?",
       },
       {
         type: "input",
-        name: "idIntern",
-        message: "What is the Team Manager's id?",
+        name: "id",
+        message: "What is the Intern's id?",
       },
       {
         type: "input",
-        name: "emailEngineer",
-        message: "What is the email address for the Engineer?",
+        name: "email",
+        message: "What is the email address for your Intern?",
       },
       {
         type: "input",
-        name: "githubEngineer",
-        message: "What is Team Manager's office number?",
+        name: "school",
+        message: "What school did your Intern go to?",
       },
     ])
     .then((answer) => {
       let intern = new Intern(
-        answer.nameEngineer,
-        answer.idEngineer,
-        answer.emailEngineer,
-        answer.githubEngineer
+        answer.name,
+        answer.id,
+        answer.email,
+        answer.school
       );
       team.push(intern);
 
-      // addNewEmployee();
+      addNewEmployee();
     });
 };
 
 // add another employee
+const addNewEmployee = () => {
+  inquirer
+    .prompt([
+      {
+        name: "newMember",
+        message: "Would you like to add another person to your team?",
+        type: "confirm",
+      },
+    ])
+    .then((answer) => {
+      if (answer.newMember) {
+        employeeType();
+      } else {
+        // const renderTeam = render(team); // gets the team array and // cant use this havent leanred react
+        let htmlPage = generateHTML(team); // i think this works
+        // fs.writeFile(outputPath, renderTeam);
+        fs.writeFile("indextest.html", htmlPage); // i think this works
+        console.log("A file containing your team has been created.");
+      }
+    })
+    .catch((err) => console.log(err));
+};
 
 // const questions = [
 //   {
