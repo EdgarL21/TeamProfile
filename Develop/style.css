@@ -1,0 +1,45 @@
+/* .top-areaManager {
+    background-color: red;
+}
+
+.top-areaEngineer {
+    background-color: grey;
+}
+
+.top-areaIntern {
+    background-color: yellow;
+} */
+
+.border {
+  border-radius: 1px solid black;
+  /* padding: 1em; */
+  /* margin: 1em; */
+}
+
+.header {
+    margin: auto;
+    width: 100%;
+    border: 1px solid black;
+    padding: 10px;
+    text-align: center;
+}
+
+.bottom {
+    margin: auto;
+    width: 100%;
+    /* border: 1px solid black; */
+    padding: 10px;
+    text-align: center;
+}
+
+/* @media (min-width: 1280px) {
+  .container {
+    max-width: 970px;
+  }
+}
+
+@media (min-width: 1700px) {
+  .container {
+    max-width: 1650px;
+  }
+} */

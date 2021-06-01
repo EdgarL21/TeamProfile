@@ -1,11 +1,11 @@
+const inquirer = require("inquirer");
+const fs = require("fs");
 const Manager = require('./lib/Manager')
 const Engineer = require('./lib/Engineer')
 const Intern = require('./lib/Intern')
-const inquirer = require("inquirer");
-const fs = require("fs");
-const path = require('path');
+// const path = require('path');
 
-// const generateHTML = require('') // this this to pass in an a premade HTML/Styled page
+// const createHTML = require('') // this this to pass in an a premade HTML/Styled page
 
 // const OUTPUT_DIR = path.resolve(__dirname, "output");
 // const outputPath = path.join(OUTPUT_DIR, "team.html");
@@ -40,7 +40,7 @@ const employeeType = () => {
     })
     .catch((err) => console.error(err));
 };
-employeeType(); // calls the employeType function
+employeeType(); // calls the employeType function to start the process of getting team input
 
 // create manager
 const createManager = () => {
@@ -171,103 +171,11 @@ const addNewEmployee = () => {
         employeeType();
       } else {
         // const renderTeam = render(team); // gets the team array and // cant use this havent leanred react
-        let htmlPage = generateHTML(team); // i think this works
+        let htmlPage = createHTML(team); // i think this works
         // fs.writeFile(outputPath, renderTeam);
-        fs.writeFile("indextest.html", htmlPage); // i think this works
+        fs.writeFile("teamTest.html", htmlPage); // i think this works
         console.log("A file containing your team has been created.");
       }
     })
     .catch((err) => console.log(err));
 };
-
-// const questions = [
-//   {
-//     type: "input",
-//     name: "nameManger",
-//     message: "What is your Team Manager's name?",
-//   },
-//   {
-//     type: "input",
-//     name: "idManager",
-//     message: "What is the Team Manager's id?",
-//   },
-//   {
-//     type: "input",
-//     name: "emailManager",
-//     message: "What is the email address for the Team Manager?",
-//   },
-//   {
-//     type: "input",
-//     name: "officeNumberManager",
-//     message: "What is Team Manager's office number?",
-//   }
-// ];
-
-// const addMember = [
-//   {
-//     type: "list",
-//     name: "addteam",
-//     message: "Do you want to add another member to your team?",
-//     choice: ["Enginner", "Intern", "none"],
-//   }
-// ];
-
-// const runEngineer = [
-//   {
-//     type: "input",
-//     name: "nameEngineer",
-//     message: "What is your Engineer's name?",
-//   },
-//   {
-//     type: "input",
-//     name: "idEngineer",
-//     message: "What is the Engineer's id?",
-//   },
-//   {
-//     type: "input",
-//     name: "emailEngineer",
-//     message: "What is the email address for the Engineer?",
-//   },
-//   {
-//     type: "input",
-//     name: "githubEngineer",
-//     message: "What is the Engineer's Github?",
-//   }
-// ];
-
-// const runIntern = [
-//   {
-//     type: "input",
-//     name: "nameIntern",
-//     message: "What is your Intern's name?",
-//   },
-//   {
-//     type: "input",
-//     name: "idIntern",
-//     message: "What is the Team Manager's id?",
-//   },
-//   {
-//     type: "input",
-//     name: "emailEngineer",
-//     message: "What is the email address for the Engineer?",
-//   },
-//   {
-//     type: "input",
-//     name: "githubEngineer",
-//     message: "What is Team Manager's office number?",
-//   }
-// ]
-
-//   // function manager() {
-//   //   inquirer.prompt(questions).then(function(data){
-//   //     const manager = new
-//   //   })
-//   // };
-
-//   .then((answers) => {
-//     console.log(answers);
-
-//     fs.writeFile("teamTest.html", answers1, (err, data) =>
-//       err ? console.log(err) : console.log("Success created teamTest.html")
-//     );
-//   });
