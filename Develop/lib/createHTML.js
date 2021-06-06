@@ -7,18 +7,18 @@ function createHTML(team) {
       createdManager =
         createdManager +
         `
-            <!-- Manager -->
-            <div class="col-12 col-md-3 offset-md-1 border">
-              <div class="bg-secondary p-3 header">
-                <h2>Name: ${employee.name}</h2>
-                <h3>Role: ${employee.role}</h3>
-              </div>
-              <div class="bottom">
-                <p>Id: ${employee.id}</p>
-                <p>Office Number: ${employee.officeNumber}</p>
-                <a href="mailto:${employee.email}" class="card-link emailLink">email</a>
-              </div>
-            </div>`;
+        <!-- Manager -->
+        <div class="col-12 col-md-3 offset-md-1 border">
+          <div class="bg-secondary p-3 header">
+            <h2>Name: ${employee.name}</h2>
+            <h3>Role: ${employee.role}</h3>
+          </div>
+          <div class="bottom">
+            <p>Id: ${employee.id}</p>
+            <p>Office Number: ${employee.officeNumber}</p>
+            <a href="mailto:${employee.email}" class="card-link emailLink">${employee.email}</a>
+          </div>
+        </div>`;
     } // end of if statment
 
     if (employee.role == "Engineer") {
@@ -33,11 +33,12 @@ function createHTML(team) {
            </div>
            <div class="bottom">
              <p>Id: ${employee.id}</p>
-             <a>Gitub: https://github.com/${employee.github}</a><br /><br />
-             <a href="mailto:${member.email}" class="card-link emailLink">email</a>
+             <a href="https://github.com/${employee.github}" target="_blank">Gitub: ${employee.github}</a><br /><br />
+             <a href="mailto:${employee.email}" class="card-link emailLink">${employee.email}</a>
            </div>
          </div>`;
     } // end  of if statment
+
     if (employee.role == "Intern") {
       createdIntern =
         createdIntern +
@@ -51,14 +52,14 @@ function createHTML(team) {
           <div class="bottom">
             <p>Id: ${employee.id}</p>
             <p>School: ${employee.school}</p>
-            <a href="mailto:${member.email}" class="card-link emailLink">email</a>
+            <a href="mailto:${employee.email}" class="card-link emailLink">${employee.email}</a>
           </div>
         </div>`;
     }
+    
   });
-  return (
-    `
-    <!DOCTYPE html>
+  return `
+  <!DOCTYPE html>
   <html lang="en">
     <head>
       <meta charset="UTF-8" />
@@ -71,7 +72,7 @@ function createHTML(team) {
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
         crossorigin="anonymous"
       />
-      <link rel="stylesheet" href="style.css" />
+      <link rel="stylesheet" href="./templates/style.css" />
     </head>
     <body>
       <header>
@@ -82,21 +83,10 @@ function createHTML(team) {
         </div>
       </header>
   
-      <!-- <div class="container"> -->
-      <!-- <div class="container"> -->
       <div class="row">
-        <!-- Manager -->
-      ` +
-    createdManager +
-    `
-        <!-- Engineer -->
-      ` +
-    createdEngineer +
-    `
-        <!-- Intern -->
-      ` +
-    createdIntern +
-    `
+    ${createdManager}
+    ${createdEngineer}
+    ${createdIntern}
       </div>
       <script
         src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -115,8 +105,7 @@ function createHTML(team) {
       ></script>
       <script src="../index.js"></script>
     </body>
-  </html>`
-  ); // end of for each loop
+  </html>`; // end of for each loop
 }
 
 module.exports = createHTML;
