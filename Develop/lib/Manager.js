@@ -9,34 +9,3 @@ class Manager extends Employee {
 }
 
 module.exports = Manager; 
-
-// const Employee = require("./Employee");
-
-// class Manager extends Employee {
-//   constructor(name, id, email, officeNumber) {
-//     super(name, id, email);
-//     this.officeNumber = officeNumber;
-//   }
-
-//   getName() {
-//     return this.name;
-//   }
-
-//   getId() {
-//     return this.id;
-//   }
-
-//   getEmail() {
-//     return this.email;
-//   }
-
-//   getOffice() {
-//     return this.officeNumber;
-//   }
-
-//   getRole() {
-//     return "Manager";
-//   }
-// }
-
-// module.exports = Manager;

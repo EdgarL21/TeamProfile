@@ -3,13 +3,8 @@ const fs = require("fs");
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
-// const path = require('path');
-
-// const OUTPUT_DIR = path.resolve(__dirname, "output");
-// const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const createHTML = require("./lib/createHTML"); // this this to pass in an a premade HTML/Styled page
-// const render = require("./lib/createHTML");
 
 const team = []; // empy array for members that get pushed in it
 
@@ -158,7 +153,7 @@ const createIntern = () => {
     });
 };
 
-// add another employee
+// function to add another employee
 const addNewEmployee = () => {
   inquirer
     .prompt([
@@ -172,9 +167,9 @@ const addNewEmployee = () => {
       if (answer.newMember) {
         employeeType();
       } else {
-        const htmlPage = createHTML(team); // i think this works
+        const htmlPage = createHTML(team);
         console.log(htmlPage);
-        fs.writeFile("team(Testing).html", htmlPage, () => {}); // i think this works
+        fs.writeFile("team(Testing).html", htmlPage, () => {});
         console.log("A file containing your team has been created.");
       }
     })

@@ -56,7 +56,6 @@ function createHTML(team) {
           </div>
         </div>`;
     }
-    
   });
   return `
   <!DOCTYPE html>
