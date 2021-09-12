@@ -24,6 +24,7 @@ const employeeType = () => {
       },
     ])
     .then((answer) => {
+      // asks for tpe of employee you want for team
       if (answer.employee === 0) {
         createManager();
       } else if (answer.employee === 1) {
@@ -36,7 +37,7 @@ const employeeType = () => {
 };
 employeeType(); // calls the employeType function to start the process of getting team input
 
-// create manager
+// create manager function
 const createManager = () => {
   inquirer
     .prompt([
@@ -71,11 +72,11 @@ const createManager = () => {
       );
       team.push(manager);
 
-      addNewEmployee();
+      addNewEmployee(); // calls to add another employee inside the Manager function
     });
 };
 
-// crete engineer
+// crete engineer function
 const createEngineer = () => {
   inquirer
     .prompt([
@@ -110,7 +111,7 @@ const createEngineer = () => {
       );
       team.push(engineer);
 
-      addNewEmployee();
+      addNewEmployee(); // calls to add another employee inside the Engineer function
     });
 };
 
@@ -149,11 +150,11 @@ const createIntern = () => {
       );
       team.push(intern);
 
-      addNewEmployee();
+      addNewEmployee(); // calls to add another employee inside the Intern function
     });
 };
 
-// function to add another employee
+// function to add another employee is run inside the other functions
 const addNewEmployee = () => {
   inquirer
     .prompt([
@@ -167,8 +168,8 @@ const addNewEmployee = () => {
       if (answer.newMember) {
         employeeType();
       } else {
-        const htmlPage = createHTML(team);
-        console.log(htmlPage);
+        const htmlPage = createHTML(team); // passes the team array input into the premade createhtml page and puts it into a varaible htmlPage
+        console.log(htmlPage); // logs the html page based on the team input
         fs.writeFile("team(Testing).html", htmlPage, () => {});
         console.log("A file containing your team has been created.");
       }
